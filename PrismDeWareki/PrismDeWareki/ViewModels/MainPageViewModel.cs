@@ -1,35 +1,34 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using PrismDeWareki.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace PrismDeWareki.ViewModels
 {
-    public class MainPageViewModel : BindableBase, INavigationAware
+    public class MainPageViewModel : BindableBase
     {
-        private string _title;
-        public string Title
+        private string _deviceDate;
+        public string DeviceDate
         {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
+            get { return _deviceDate; }
+            set { SetProperty(ref _deviceDate, value); }
         }
 
-        public MainPageViewModel()
+        private string _deviceTime;
+        public string DeviceTime
         {
-
+            get { return _deviceTime; }
+            set { SetProperty(ref _deviceTime, value); }
         }
 
-        public void OnNavigatedFrom(NavigationParameters parameters)
-        {
 
-        }
-
-        public void OnNavigatedTo(NavigationParameters parameters)
+        public MainPageViewModel(IDeviceInfoService DeviceInfoService)
         {
-            if (parameters.ContainsKey("title"))
-                Title = (string)parameters["title"] + " and Prism";
+            DeviceDate = DeviceInfoService.ConvertToDeviceLongDateFormat(DateTime.Now);
+            DeviceTime = DeviceInfoService.ConvertToDeviceTimeFormat(DateTime.Now);
         }
     }
 }

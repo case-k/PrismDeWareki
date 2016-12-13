@@ -5,7 +5,10 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="PrismDeWareki.Views.MainPage"
              Title="MainPage">
+  
   <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-    <Label Text="{Binding Title}" />
+    <Label Text="{Binding DeviceDate}" />
+    <Label Text="{Binding DeviceTime}" />
   </StackLayout>
+  
 </ContentPage>
